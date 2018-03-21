@@ -1,0 +1,102 @@
+/**    
+ * 文件名：NettyClient.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月19日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package Net;
+
+import java.util.concurrent.LinkedBlockingQueue;
+
+import DBRPC.Netty.EchoClient;
+import FastRPC.RPCNet.JSocket;
+import INet.IRPCNet;
+import INet.ISocketHander;
+import io.netty.channel.ChannelFuture;
+
+/**    
+ *     
+ * 项目名称：Netty    
+ * 类名称：NettyClient    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月19日 上午2:08:40    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月19日 上午2:08:40    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class NettyClient   implements IRPCNet{
+    EchoClient client=null;
+    private ISocketHander hander=null;
+    private  volatile boolean isRun=false;
+    private LinkedBlockingQueue<JSocket> queue=new LinkedBlockingQueue<JSocket>();
+    public NettyClient(ChannelFuture client)
+    {
+        this.client=client;
+    }
+    public void start(ISocketHander hander) {
+      this.hander=hander;
+    }
+
+    public int sendData(byte[] data) {
+        client.sendData(data);
+        return 0;
+    }
+
+    public byte[] recvice() {
+       try {
+        return  queue.take().buffer;
+    } catch (InterruptedException e) {
+   
+        e.printStackTrace();
+    }
+    return null;
+    }
+
+    public String getAddress() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public void setAddress(String ip) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public int getPort() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    public void setPort(int port) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void close() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public boolean connect(String ip, int port) {
+        client =new    EchoClient(ip,port);
+        client.start();
+        return true;
+    }
+
+    public void send(String ip, int port, byte[] data) {
+        sendData(data);
+        
+    }
+
+    public boolean bind(String ip, int port) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+}

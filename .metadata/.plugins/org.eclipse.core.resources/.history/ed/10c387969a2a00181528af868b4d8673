@@ -1,0 +1,65 @@
+/**    
+ * 文件名：Server.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月18日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package DBRPC.Netty;
+
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+
+/**    
+ *     
+ * 项目名称：Netty    
+ * 类名称：Server    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月18日 下午6:25:58    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月18日 下午6:25:58    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class Server {
+    private int port;  
+    public Server(int port) {  
+        this.port = port;  
+    }  
+    public void run() throws Exception {  
+        EventLoopGroup bossGroup = new NioEventLoopGroup();  
+        EventLoopGroup workerGroup = new NioEventLoopGroup();  
+        try {  
+            ServerBootstrap serverBootstrap = new ServerBootstrap();  
+            serverBootstrap.group(bossGroup, workerGroup);  
+            serverBootstrap.channel(NioServerSocketChannel.class);  
+            serverBootstrap.option(ChannelOption.SO_BACKLOG, 1024);  
+            serverBootstrap.handler(new LoggingHandler());  
+            serverBootstrap.childHandler(new NettyChannelHandler());  
+            ChannelFuture channelFuture = serverBootstrap.bind(port).sync();  
+            channelFuture.channel().closeFuture().sync();  
+        } finally {  
+            bossGroup.shutdownGracefully();  
+            workerGroup.shutdownGracefully();  
+        }  
+    }  
+    public static void main(String[] args) throws Exception {  
+        int port;  
+        if (args.length > 0) {  
+            port = Integer.parseInt(args[0]);  
+        } else {  
+            port = 9090;  
+        }  
+        new Server(port).run();  
+    }  
+}

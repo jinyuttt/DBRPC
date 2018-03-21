@@ -1,0 +1,79 @@
+/**    
+ * 文件名：TimeClientHandler.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月19日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package DBRPC.Netty;
+
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerAdapter;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.util.ReferenceCountUtil;
+
+
+/**    
+ *     
+ * 项目名称：Netty    
+ * 类名称：TimeClientHandler    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月19日 上午12:01:10    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月19日 上午12:01:10    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class TimeClientHandler extends  ChannelHandlerAdapter   {
+
+    /**
+     * 发送消息给服务端
+     */
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        
+        even.setJsonObject(JSONObject.toJSONString(qt));
+        ctx.writeAndFlush(even);
+    }
+    @Override
+        public void channelRead(ChannelHandlerContext ctx, Object msg) { // (2)
+ 
+        ByteBuf in = (ByteBuf) msg;
+    
+            try {
+  
+                while (in.isReadable()) { // (1)
+     
+                    System.out.print((char) in.readByte());
+
+                    System.out.flush();
+
+                }
+
+            } finally {
+    
+                ReferenceCountUtil.release(msg); // (2)
+
+            }
+
+        }
+ 
+        @Override
+  
+        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) { // (4)
+
+            // Close the connection when an exception is raised.
+ 
+            cause.printStackTrace();
+
+            ctx.close();
+
+        }
+
+
+
+}

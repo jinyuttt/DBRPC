@@ -1,0 +1,58 @@
+/**    
+ * 文件名：TimeClientHandler.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月19日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package DBRPC.Netty;
+
+import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelHandlerAdapter;
+import io.netty.channel.ChannelHandlerContext;
+
+
+/**    
+ *     
+ * 项目名称：Netty    
+ * 类名称：TimeClientHandler    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月19日 上午12:01:10    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月19日 上午12:01:10    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class TimeClientHandler extends  ChannelHandlerAdapter   {
+
+    @Override
+    14
+        public void channelRead(ChannelHandlerContext ctx, Object msg) { // (2)
+    15
+            // Discard the received data silently.
+    16
+            ((ByteBuf) msg).release(); // (3)
+    17
+        }
+    18
+     
+    19
+        @Override
+    20
+        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) { // (4)
+    21
+            // Close the connection when an exception is raised.
+    22
+            cause.printStackTrace();
+    23
+            ctx.close();
+    24
+        }
+
+
+
+}

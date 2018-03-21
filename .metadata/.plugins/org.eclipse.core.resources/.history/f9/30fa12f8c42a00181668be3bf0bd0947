@@ -1,0 +1,71 @@
+/**    
+ * 文件名：TimeServerHandler.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月18日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package DBRPC.Netty;
+
+import io.netty.buffer.ChannelBuf;
+import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+
+/**    
+ *     
+ * 项目名称：Netty    
+ * 类名称：TimeServerHandler    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月18日 下午11:53:53    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月18日 下午11:53:53    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class TimeServerHandler extends  ChannelInboundHandlerAdapter {
+
+    @Override
+    public void channelActive(final ChannelHandlerContext ctx) { // (1)
+        final ByteBuf time = ctx.alloc().buffer(4); // (2)
+        time.writeInt((int) (System.currentTimeMillis() / 1000L + 2208988800L));
+
+        final ChannelFuture f = ctx.writeAndFlush(time); // (3)
+        System.out.println("Server return :"+time.toString());
+        f.addListener(new ChannelFutureListener() {
+            @Override
+            public void operationComplete(ChannelFuture future) {
+                assert f == future;
+                ctx.close();
+            }
+        }); // (4)
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        cause.printStackTrace();
+        ctx.close();
+    }
+
+    public void freeInboundBuffer(ChannelHandlerContext arg0, ChannelBuf arg1) throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public ChannelBuf newInboundBuffer(ChannelHandlerContext arg0) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void inboundBufferUpdated(ChannelHandlerContext arg0) throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
+   
+}

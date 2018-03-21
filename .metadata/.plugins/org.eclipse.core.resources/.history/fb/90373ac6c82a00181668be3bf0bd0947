@@ -1,0 +1,50 @@
+/**    
+ * 文件名：TimeClientHandler.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月19日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package DBRPC.Netty;
+
+import io.netty.buffer.ChannelBuf;
+import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+
+/**    
+ *     
+ * 项目名称：Netty    
+ * 类名称：TimeClientHandler    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月19日 上午12:01:10    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月19日 上午12:01:10    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class TimeClientHandler extends  ChannelInboundHandlerAdapter  {
+
+    public void freeInboundBuffer(ChannelHandlerContext arg0, ChannelBuf arg1) throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public ChannelBuf newInboundBuffer(ChannelHandlerContext arg0) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void inboundBufferUpdated(ChannelHandlerContext arg0) throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+
+}

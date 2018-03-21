@@ -1,0 +1,52 @@
+/**    
+ * 文件名：MappedByteBufferFile.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月21日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package Files;
+
+import java.io.FileInputStream;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+
+/**    
+ *     
+ * 项目名称：DBQuery    
+ * 类名称：MappedByteBufferFile    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月21日 上午12:38:06    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月21日 上午12:38:06    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class MappedByteBufferFile {
+public byte[] readFile(String file)
+{
+    ByteBuffer byteBuf = ByteBuffer.allocate(1024 * 14 * 1024);  
+    byte[] bbb = new byte[14 * 1024 * 1024];  
+    FileInputStream fis = new FileInputStream(file);  
+   // FileOutputStream fos = new FileOutputStream("e://data/other/outFile.txt");  
+    FileChannel fc = fis.getChannel();  
+    long timeStar = System.currentTimeMillis();// 得到当前的时间  
+    fc.read(byteBuf);// 1 读取  
+    //MappedByteBuffer mbb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());  
+    System.out.println(fc.size()/1024);  
+    long timeEnd = System.currentTimeMillis();// 得到当前的时间  
+    System.out.println("Read time :" + (timeEnd - timeStar) + "ms");  
+    timeStar = System.currentTimeMillis();  
+    fos.write(bbb);//2.写入  
+    //mbb.flip();  
+    timeEnd = System.currentTimeMillis();  
+    System.out.println("Write time :" + (timeEnd - timeStar) + "ms");  
+    fos.flush();  
+    fc.close();  
+    fis.close(); 
+}
+}

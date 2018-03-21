@@ -1,0 +1,53 @@
+/**    
+ * 文件名：DataRow.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月17日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package JTableCollect;
+
+import LinkedHashMap;
+
+/**    
+ *     
+ * 项目名称：DBAcess    
+ * 类名称：DataRow    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月17日 下午3:30:16    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月17日 下午3:30:16    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class DataRow extends LinkedHashMap<String, Object> {
+    /**
+     * DataRow被建立時，必須指定所屬的DataTable
+     * @param DataRow所屬的DataTable 
+     */
+    public DataRow(DataTable table) {
+       this.table = table;
+      }
+
+
+    /**
+     * 此資料列所屬的DataTable，唯讀
+     */
+    private DataTable table; 
+    
+    
+   /**
+     * 取得DataRow所屬的DataTable
+     * @return DataTable
+     */
+   public DataTable getTable()
+   {
+     return this.table;
+   }
+
+
+}

@@ -1,0 +1,27 @@
+/**    
+ * 文件名：MappedByteBufferFile.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月21日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package Files;
+
+/**    
+ *     
+ * 项目名称：DBQuery    
+ * 类名称：MappedByteBufferFile    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月21日 上午12:38:06    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月21日 上午12:38:06    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class MappedByteBufferFile {
+
+}

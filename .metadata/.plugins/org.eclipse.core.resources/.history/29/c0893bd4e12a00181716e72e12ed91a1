@@ -1,0 +1,94 @@
+/**    
+ * 文件名：NettyServer.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月19日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package Net;
+
+import DBRPC.Netty.EchoServer;
+import INet.IRPCNet;
+import INet.ISocketHander;
+
+/**    
+ *     
+ * 项目名称：Netty    
+ * 类名称：NettyServer    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月19日 上午2:51:29    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月19日 上午2:51:29    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class NettyServer  implements IRPCNet{
+    private int port=0;
+    private String host="";
+    private EchoServer server=null;
+    public void start(ISocketHander hander) {
+   
+      server=new EchoServer(port);
+      server.handler.hander.hander=hander;
+      try {
+        server.run();
+    } catch (Exception e) {
+    
+        e.printStackTrace();
+    }
+    }
+
+    public int sendData(byte[] data) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    public byte[] recvice() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public String getAddress() {
+        return host;
+    }
+
+    public void setAddress(String ip) {
+     this.host=ip;
+        
+    }
+
+    public int getPort() {
+     
+        return port;
+    }
+
+    public void setPort(int port) {
+      this.port=port;
+        
+    }
+
+    public void close() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public boolean connect(String ip, int port) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    public void send(String ip, int port, byte[] data) {
+       
+        
+    }
+
+    public boolean bind(String ip, int port) {
+      
+        return false;
+    }
+
+}

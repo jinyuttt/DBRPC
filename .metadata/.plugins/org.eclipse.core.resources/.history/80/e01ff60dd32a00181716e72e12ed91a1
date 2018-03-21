@@ -1,0 +1,83 @@
+/**    
+ * 文件名：Client.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月19日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package DBRPC.Netty;
+
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
+
+/**    
+ *     
+ * 项目名称：Netty    
+ * 类名称：Client    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月19日 上午12:00:27    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月19日 上午12:00:27    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class EchoClient {
+    String host = "127.0.0.1";
+    int port = Integer.parseInt("8080");
+    public EchoClient() {  
+        this("localhost", 8989);  
+    }  
+  
+    public EchoClient(String host) {  
+        this(host, 8989);  
+    }  
+  
+    public EchoClient(String host, int port) {  
+        this.host = host;  
+        this.port = port;  
+    }  
+    public  void start()
+    {
+    EventLoopGroup workerGroup = new NioEventLoopGroup(); // (1)
+    try {
+        Bootstrap b = new Bootstrap(); // (1)
+        b.group(workerGroup); // (2)
+        b.channel(NioSocketChannel.class); // (3)
+        b.option(ChannelOption.SO_KEEPALIVE, true); // (4)
+        b.handler(new ChannelInitializer<SocketChannel>() {
+            @Override
+            public void initChannel(SocketChannel ch) throws Exception {
+                ch.pipeline().addLast(new TimeClientHandler());
+            }
+        });
+        // Start the client.
+        ChannelFuture f = null;
+        try {
+            f = b.connect(host, port).sync();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } // (5)
+
+        // Wait until the connection is closed.
+        try {
+            f.channel().closeFuture().sync();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    } finally {
+        workerGroup.shutdownGracefully();
+    }
+}
+}

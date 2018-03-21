@@ -1,0 +1,86 @@
+/**    
+ * 文件名：NettyServer.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月19日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package Net;
+
+import INet.IRPCNet;
+import INet.ISocketHander;
+
+/**    
+ *     
+ * 项目名称：Netty    
+ * 类名称：NettyServer    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月19日 上午2:51:29    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月19日 上午2:51:29    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class NettyServer  implements IRPCNet{
+    private ISocketHander hander;
+    private  boolean isStop=false
+    public void start(ISocketHander hander) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public int sendData(byte[] data) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    public byte[] recvice() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public String getAddress() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public void setAddress(String ip) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public int getPort() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    public void setPort(int port) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void close() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public boolean connect(String ip, int port) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    public void send(String ip, int port, byte[] data) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public boolean bind(String ip, int port) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+}

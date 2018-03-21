@@ -1,0 +1,29 @@
+/**    
+ * 文件名：DataColumnCollection.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月17日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package JTableCollect;
+
+import ArrayList;
+
+/**    
+ *     
+ * 项目名称：DBAcess    
+ * 类名称：DataColumnCollection    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月17日 下午3:33:53    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月17日 下午3:33:53    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class DataColumnCollection extends ArrayList<DataColumn> {
+
+}

@@ -1,0 +1,45 @@
+/**    
+ * 文件名：TimeServerHandler.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月19日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package DBRPC.Netty;
+
+import java.net.SocketAddress;
+
+import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelHandlerAdapter;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelPromise;
+
+/**    
+ *     
+ * 项目名称：Netty    
+ * 类名称：TimeServerHandler    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月19日 上午12:43:47    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月19日 上午12:43:47    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class TimeServerHandler  extends ChannelHandlerAdapter {
+
+    @Override
+
+        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+
+            cause.printStackTrace();
+
+            ctx.close();
+  
+        }
+
+
+}

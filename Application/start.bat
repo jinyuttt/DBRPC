@@ -1,0 +1,1 @@
+java -jar Application-1.0.0-shaded.jar

@@ -1,0 +1,67 @@
+/**    
+ * 文件名：MappedByteBufferFile.java    
+ *    
+ * 版本信息：    
+ * 日期：2018年3月21日    
+ * Copyright 足下 Corporation 2018     
+ * 版权所有    
+ *    
+ */
+package Files;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+
+/**    
+ *     
+ * 项目名称：DBQuery    
+ * 类名称：MappedByteBufferFile    
+ * 类描述：    
+ * 创建人：jinyu    
+ * 创建时间：2018年3月21日 上午12:38:06    
+ * 修改人：jinyu    
+ * 修改时间：2018年3月21日 上午12:38:06    
+ * 修改备注：    
+ * @version     
+ *     
+ */
+public class MappedByteBufferFile {
+public byte[] readFile(String file)
+{
+    ByteBuffer byteBuf = ByteBuffer.allocate(1024 * 14 * 1024);  
+    byte[] bbb = new byte[14 * 1024 * 1024];  
+    FileInputStream fis;
+    try {
+        fis = new FileInputStream(file);
+    } catch (FileNotFoundException e) {
+        return null;
+    }  
+    FileChannel fc = fis.getChannel();    
+    MappedByteBuffer mbb = null;
+    try {
+        mbb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
+    } catch (IOException e) {
+    
+    }  
+ finally
+ {
+    mbb.flip();  
+    try {
+        fc.close();
+    } catch (IOException e) {
+     
+        e.printStackTrace();
+    }  
+    try {
+        fis.close();
+    } catch (IOException e) {
+     
+        e.printStackTrace();
+    } 
+ }
+}
+}
