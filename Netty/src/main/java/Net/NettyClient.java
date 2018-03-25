@@ -16,7 +16,6 @@ import FastRPC.RPCNet.JSocket;
 import FastRPC.RPCNet.NetType;
 import INet.IRPCNet;
 import INet.ISocketHander;
-import io.netty.channel.ChannelFuture;
 
 /**    
  *     

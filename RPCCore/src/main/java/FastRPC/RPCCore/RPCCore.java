@@ -58,8 +58,6 @@ public void  Init()
     map.put("server", serverDir);
     map.put("netjar", netJar);
     hash.putAll(map);
-  
-   
 }
 public void init(HashMap<String,String> map)
 {
@@ -118,6 +116,5 @@ public void UtilInit()
      HttpServer httpSrc=new HttpServer();
      httpSrc.UtilInit(applicationDir+"/"+serverDir);
      httpSrc.start();
-    
 }
 }

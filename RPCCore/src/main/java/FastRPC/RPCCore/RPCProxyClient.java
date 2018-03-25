@@ -40,7 +40,6 @@ public  T execute(String name,List<RPCParameter> list,Class<?> clsT)
     try {
         seri = returnCode.getBytes("UTF-8");
     } catch (UnsupportedEncodingException e) {
-     
         e.printStackTrace();
     }
     byte[] para=new byte[0];
@@ -58,7 +57,9 @@ public  T execute(String name,List<RPCParameter> list,Class<?> clsT)
     buf.put(seri);
     buf.put(para);
     NetProxy.getInstance().getProxy(name).sendData(data);
-    byte[] bytes=  NetProxy.getInstance().getProxy(name).recvice();
+    byte[] bytes=null;
+      
+            NetProxy.getInstance().getProxy(name).recvice();
     //
     if(bytes!=null)
     {
@@ -99,6 +100,14 @@ public  T execute(String name,List<RPCParameter> list,Class<?> clsT)
         }
     }
     return null;
-	
+}
+private byte[] getEureka(byte[]data)
+{
+    RPCParameter eureka=new RPCParameter();
+    eureka.name="data";
+    eureka.value=data;
+    eureka.clsType=this.returnCode;
+    NetProxy.getInstance().getProxy("eureka").sendData(data);
+    return  NetProxy.getInstance().getProxy("eureka").recvice();
 }
 }

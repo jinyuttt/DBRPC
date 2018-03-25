@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="JTable.DataColumn"/>
 <fullyQualifiedTypeName name="JTableCollect.JDataTable"/>
 <fullyQualifiedTypeName name="JXMLTable.DataXMLTable"/>
 <fullyQualifiedTypeName name="JXMLTable.JXMLAdapter"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="FastRPC.RPCCore.RPCProxyClient"/>
 <fullyQualifiedTypeName name="FastRPC.RPCCore.ParameterConvert"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.concurrent.ConcurrentHashMap"/>
 </qualifiedTypeNameHistroy>

@@ -42,16 +42,13 @@ import org.msgpack.unpacker.Unpacker;
  *     
  */
 public class ObjectTemplate extends AbstractTemplate<Object> {
-
+    static final ObjectTemplate instance = new ObjectTemplate();
     private ObjectTemplate() {
     }
 
     static public ObjectTemplate getInstance() {
         return instance;
     }
-
-    static final ObjectTemplate instance = new ObjectTemplate();
-
     public void write(Packer pk, Object v, boolean required) throws IOException {
         if (v == null) {
             if (required) {
